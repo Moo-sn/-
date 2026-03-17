@@ -1,9 +1,89 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>My Widget</title>
-  </head>
-  <body>
-    <h1>Hello GitHub ✨</h1>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <title>My Widget</title>
+
+  <!-- フォント -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background-image: url("https://picsum.photos/800/1200"); /* 仮の背景 */
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      backdrop-filter: blur(2px);
+    }
+
+    .box {
+      background: rgba(0,0,0,0.4);
+      padding: 30px;
+      border-radius: 15px;
+    }
+
+    .time {
+      font-size: 40px;
+    }
+
+    .date {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+
+    .quote {
+      margin-top: 20px;
+      font-size: 16px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="date" id="date"></div>
+    <div class="time" id="time"></div>
+    <div class="quote" id="quote"></div>
+  </div>
+
+  <script>
+    function updateTime() {
+      const now = new Date();
+
+      const date = now.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+
+      const time = now.toLocaleTimeString('en-US');
+
+      document.getElementById("date").textContent = date;
+      document.getElementById("time").textContent = time;
+    }
+
+    const quotes = [
+      "Stay hungry, stay foolish.",
+      "Dream big and dare to fail.",
+      "Everything you can imagine is real.",
+      "Do what you can, with what you have."
+    ];
+
+    function setQuote() {
+      const q = quotes[Math.floor(Math.random() * quotes.length)];
+      document.getElementById("quote").textContent = q;
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+    setQuote();
+  </script>
+</body>
 </html>
